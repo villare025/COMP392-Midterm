@@ -2,6 +2,7 @@
 
 // MAIN GAME FILE
 
+
 // THREEJS Aliases
 import Scene = THREE.Scene;
 import Renderer = THREE.WebGLRenderer;
@@ -41,6 +42,24 @@ var game = (() => {
     var control: Control;
     var gui: GUI;
     var stats: Stats;
+    
+    // Declare Tapered Tower Game Objects
+    var axes: AxisHelper;
+    var cube1: Mesh;
+    var cube2: Mesh;
+    var cube3: Mesh;
+    var cube4: Mesh;
+    var cube5: Mesh;
+    var cubeGeometry: CubeGeometry;
+    var cubeMaterial: LambertMaterial;
+    var ground: Mesh;
+    var groundGeometry: PlaneGeometry;
+    var groundMaterial: LambertMaterial;
+    var pointLight: PointLight;
+    var ambientLight: AmbientLight;
+    var texture = THREE.ImageUtils.loadTexture('texture/grass.jpg');
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(7, 5);
 
     function init() {
         // Instantiate a new Scene object
@@ -52,11 +71,73 @@ var game = (() => {
 
 
         /* ENTER CODE HERE */
+        // Cube1
+        cubeGeometry = new CubeGeometry(6, 5, 6);
+        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube1 = new Mesh(cubeGeometry, cubeMaterial);
+        cube1.position.setY(0);
+        scene.add(cube1);
+        console.log("Added Cube 1 to scene");
         
+        // Cube2
+        cubeGeometry = new CubeGeometry(5, 2, 5);
+        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube2 = new Mesh(cubeGeometry, cubeMaterial);
+        cube2.position.setY(3.5);
+        scene.add(cube2);
+        console.log("Added Cube 2 to scene");
+        
+        // Cube3
+        cubeGeometry = new CubeGeometry(4, 2, 4);
+        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube3 = new Mesh(cubeGeometry, cubeMaterial);
+        cube3.position.setY(5.5);
+        scene.add(cube3);
+        console.log("Added Cube 1 to scene");
+        
+        // Cube4
+        cubeGeometry = new CubeGeometry(3, 1, 3);
+        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube4 = new Mesh(cubeGeometry, cubeMaterial);
+        cube4.position.setY(7);
+        scene.add(cube4);
+        console.log("Added Cube 4 to scene");
+        
+        // Cube5
+        cubeGeometry = new CubeGeometry(2, 1, 2);
+        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube5 = new Mesh(cubeGeometry, cubeMaterial);
+        cube5.position.setY(7.8);
+        scene.add(cube5);
+        console.log("Added Cube 5 to scene");
+               
+        // Add an AmbientLight to Scene
+        ambientLight = new AmbientLight(0x696969);
+        scene.add(ambientLight);
+        console.log("Added an Ambient Light to Scene");
+        
+        // Point Light
+        pointLight = new PointLight(0xffffff);
+        pointLight.position.set(-4, 6, -4);
+        scene.add(pointLight);
+        console.log("Added pointLight to scene");
+        
+        // Ground
+        groundGeometry = new PlaneGeometry(16, 16);
+        groundMaterial = new THREE.MeshPhongMaterial( { map: texture});
+        ground = new Mesh(groundGeometry, groundMaterial);
+        ground.rotation.x = -0.5 * Math.PI;
+        scene.add(ground);
+        console.log("Added Burnt Ground to scene");
+    
+        // Add Helper Axis
+        axes = new AxisHelper(30);
+        ground.add(axes);
+        console.log("Added Axis Helper Object to the ground");
  
         // add controls
         gui = new GUI();
-        control = new Control();
+        control = new Control(0, 0.003, 0.003, 0.002, 0.0016);
         addControl(control);
 
         // Add framerate stats
@@ -70,6 +151,12 @@ var game = (() => {
 
     function addControl(controlObject: Control): void {
         /* ENTER CODE for the GUI CONTROL HERE */
+        // Cube Rotates
+        gui.add(controlObject, 'cube1Speed', -0.1, 0.1);
+        gui.add(controlObject, 'cube2Speed', -0.1, 0.1);
+        gui.add(controlObject, 'cube3Speed', -0.01, 0.01);
+        gui.add(controlObject, 'cube4Speed', -0.01, 0.01);
+        gui.add(controlObject, 'cube5Speed', -0.01, 0.01);
     }
 
     function addStatsObject() {
@@ -84,6 +171,13 @@ var game = (() => {
     // Setup main game loop
     function gameLoop(): void {
         stats.update();
+        
+        // Rotate Speeds
+        cube1.rotation.y += control.cube1Speed;
+        cube2.rotation.y += control.cube2Speed;
+        cube3.rotation.y += control.cube3Speed;
+        cube4.rotation.y += control.cube4Speed;
+        cube5.rotation.y += control.cube5Speed;
         
         // render using requestAnimationFrame
         requestAnimationFrame(gameLoop);
