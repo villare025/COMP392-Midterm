@@ -21,6 +21,7 @@ module objects {
         public cube4Speed: number;
         public cube5Speed: number;
         
+        //public changeCube1 : string;
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++
         constructor(cube1Speed: number, cube2Speed: number,
             cube3Speed: number, cube4Speed: number, cube5Speed: number) {
@@ -29,6 +30,7 @@ module objects {
             this.cube3Speed = cube3Speed;
             this.cube4Speed = cube4Speed;
             this.cube5Speed = cube5Speed;
+            
         }
         
         //PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++

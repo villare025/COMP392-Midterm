@@ -15,6 +15,7 @@ var objects;
 (function (objects) {
     // CONTROL CLASS ++++++++++++++++++++++++++++++++++++++++++
     var Control = (function () {
+        //public changeCube1 : string;
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++
         function Control(cube1Speed, cube2Speed, cube3Speed, cube4Speed, cube5Speed) {
             this.cube1Speed = cube1Speed;

@@ -69,6 +69,12 @@ var game = (function () {
     var skyGeometry;
     var skyMaterial;
     var skytexture = THREE.ImageUtils.loadTexture('texture/sky.png');
+    // Color Changes
+    var cubeColor1 = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+    var cubeColor2 = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+    var cubeColor3 = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+    var cubeColor4 = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+    var cubeColor5 = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
     function init() {
         // Instantiate a new Scene object
         //scene = new Scene();
@@ -80,8 +86,8 @@ var game = (function () {
         ////////////////////////////////////////////////
         // Cube1
         cubeGeometry = new CubeGeometry(6, 5, 6);
-        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
-        cube1 = new Mesh(cubeGeometry, cubeMaterial);
+        //cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube1 = new Mesh(cubeGeometry, cubeColor1);
         cube1.position.setY(0);
         cube1.castShadow = true;
         cube1.receiveShadow = true;
@@ -89,8 +95,8 @@ var game = (function () {
         console.log("Added Cube 1 to Scene");
         // Cube2
         cubeGeometry = new CubeGeometry(5, 2, 5);
-        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
-        cube2 = new Mesh(cubeGeometry, cubeMaterial);
+        //cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube2 = new Mesh(cubeGeometry, cubeColor2);
         cube2.position.setY(3.5);
         cube2.castShadow = true;
         cube2.receiveShadow = true;
@@ -98,8 +104,8 @@ var game = (function () {
         console.log("Added Cube 2 to Scene");
         // Cube3
         cubeGeometry = new CubeGeometry(4, 2, 4);
-        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
-        cube3 = new Mesh(cubeGeometry, cubeMaterial);
+        //cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube3 = new Mesh(cubeGeometry, cubeColor3);
         cube3.position.setY(5.5);
         cube3.castShadow = true;
         cube3.receiveShadow = true;
@@ -107,8 +113,8 @@ var game = (function () {
         console.log("Added Cube 1 to Scene");
         // Cube4
         cubeGeometry = new CubeGeometry(3, 1, 3);
-        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
-        cube4 = new Mesh(cubeGeometry, cubeMaterial);
+        //cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube4 = new Mesh(cubeGeometry, cubeColor4);
         cube4.position.setY(7);
         cube4.castShadow = true;
         cube4.receiveShadow = true;
@@ -116,8 +122,8 @@ var game = (function () {
         console.log("Added Cube 4 to Scene");
         // Cube5
         cubeGeometry = new CubeGeometry(2, 1, 2);
-        cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
-        cube5 = new Mesh(cubeGeometry, cubeMaterial);
+        //cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
+        cube5 = new Mesh(cubeGeometry, cubeColor5);
         cube5.position.setY(7.8);
         cube5.castShadow = true;
         cube5.receiveShadow = true;
@@ -140,7 +146,7 @@ var game = (function () {
         ground.rotation.x = -0.5 * Math.PI;
         scene.add(ground);
         console.log("Added Grassy Ground to Scene");
-        // Ground
+        // Sky
         skyGeometry = new PlaneGeometry(100, 100);
         skyMaterial = new THREE.MeshPhongMaterial({ map: skytexture });
         sky = new Mesh(skyGeometry, skyMaterial);
@@ -178,6 +184,8 @@ var game = (function () {
         gui.add(controlObject, 'cube3Speed', -0.01, 0.01);
         gui.add(controlObject, 'cube4Speed', -0.01, 0.01);
         gui.add(controlObject, 'cube5Speed', -0.01, 0.01);
+        // Try Color Changes
+        //gui.addColor(controlObject, 'changeOutfit').onChange((color) => { cube1.color = new Color(color); });
     }
     function addStatsObject() {
         stats = new Stats();
