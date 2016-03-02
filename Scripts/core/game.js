@@ -65,6 +65,10 @@ var game = (function () {
     var texture = THREE.ImageUtils.loadTexture('texture/grass.jpg');
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(7, 5);
+    var sky;
+    var skyGeometry;
+    var skyMaterial;
+    var skytexture = THREE.ImageUtils.loadTexture('texture/sky.png');
     function init() {
         // Instantiate a new Scene object
         //scene = new Scene();
@@ -130,12 +134,20 @@ var game = (function () {
         scene.add(pointLight);
         console.log("Added pointLight to Scene");
         // Ground
-        groundGeometry = new PlaneGeometry(16, 16);
+        groundGeometry = new PlaneGeometry(100, 50);
         groundMaterial = new THREE.MeshPhongMaterial({ map: texture });
         ground = new Mesh(groundGeometry, groundMaterial);
         ground.rotation.x = -0.5 * Math.PI;
         scene.add(ground);
         console.log("Added Grassy Ground to Scene");
+        // Ground
+        skyGeometry = new PlaneGeometry(100, 100);
+        skyMaterial = new THREE.MeshPhongMaterial({ map: skytexture });
+        sky = new Mesh(skyGeometry, skyMaterial);
+        sky.rotation.y = -45 * Math.PI;
+        sky.position.z = 15;
+        scene.add(sky);
+        console.log("Added Sky to Scene");
         // Add Helper Axis
         axes = new AxisHelper(30);
         ground.add(axes);
