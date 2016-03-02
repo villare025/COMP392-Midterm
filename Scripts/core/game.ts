@@ -46,7 +46,7 @@ import gameObject = objects.gameObject;
 // setup an IIFE structure (Immediately Invoked Function Expression)
 var game = (() => {
 
-    // declare game objects
+    // Declare game objects
     var scene: Scene = new Scene();
     var renderer: Renderer;
     var camera: PerspectiveCamera;
@@ -76,19 +76,22 @@ var game = (() => {
         // Instantiate a new Scene object
         //scene = new Scene();
         
-        setupRenderer(); // setup the default renderer
-	
-        setupCamera(); // setup the camera
+        // Setup the Default Renderer
+        setupRenderer();
 
-
-        /* ENTER CODE HERE */
+        setupCamera(); // Setup the Camera
+        
+        ////////////////////////////////////////////////
+        ////      Start Building Tapered Tower      ////
+        ////////////////////////////////////////////////
+        
         // Cube1
         cubeGeometry = new CubeGeometry(6, 5, 6);
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
         cube1 = new Mesh(cubeGeometry, cubeMaterial);
         cube1.position.setY(0);
         scene.add(cube1);
-        console.log("Added Cube 1 to scene");
+        console.log("Added Cube 1 to Scene");
         
         // Cube2
         cubeGeometry = new CubeGeometry(5, 2, 5);
@@ -96,7 +99,7 @@ var game = (() => {
         cube2 = new Mesh(cubeGeometry, cubeMaterial);
         cube2.position.setY(3.5);
         scene.add(cube2);
-        console.log("Added Cube 2 to scene");
+        console.log("Added Cube 2 to Scene");
         
         // Cube3
         cubeGeometry = new CubeGeometry(4, 2, 4);
@@ -104,7 +107,7 @@ var game = (() => {
         cube3 = new Mesh(cubeGeometry, cubeMaterial);
         cube3.position.setY(5.5);
         scene.add(cube3);
-        console.log("Added Cube 1 to scene");
+        console.log("Added Cube 1 to Scene");
         
         // Cube4
         cubeGeometry = new CubeGeometry(3, 1, 3);
@@ -112,7 +115,7 @@ var game = (() => {
         cube4 = new Mesh(cubeGeometry, cubeMaterial);
         cube4.position.setY(7);
         scene.add(cube4);
-        console.log("Added Cube 4 to scene");
+        console.log("Added Cube 4 to Scene");
         
         // Cube5
         cubeGeometry = new CubeGeometry(2, 1, 2);
@@ -120,7 +123,7 @@ var game = (() => {
         cube5 = new Mesh(cubeGeometry, cubeMaterial);
         cube5.position.setY(7.8);
         scene.add(cube5);
-        console.log("Added Cube 5 to scene");
+        console.log("Added Cube 5 to Scene");
                
         // Add an AmbientLight to Scene
         ambientLight = new AmbientLight(0x696969);
@@ -131,38 +134,50 @@ var game = (() => {
         pointLight = new PointLight(0xffffff);
         pointLight.position.set(-4, 6, -4);
         scene.add(pointLight);
-        console.log("Added pointLight to scene");
+        console.log("Added pointLight to Scene");
         
         // Ground
         groundGeometry = new PlaneGeometry(16, 16);
-        groundMaterial = new THREE.MeshPhongMaterial( { map: texture});
+        groundMaterial = new THREE.MeshPhongMaterial({ map: texture });
         ground = new Mesh(groundGeometry, groundMaterial);
         ground.rotation.x = -0.5 * Math.PI;
         scene.add(ground);
-        console.log("Added Burnt Ground to scene");
+        console.log("Added Grassy Ground to Scene");
     
         // Add Helper Axis
         axes = new AxisHelper(30);
         ground.add(axes);
-        console.log("Added Axis Helper Object to the ground");
- 
-        // add controls
+        console.log("Added Axis Helper Object to the Ground");
+        
+        ////////////////////////////////////////////////
+        ////       End Building Tapered Tower       ////
+        ////////////////////////////////////////////////
+        
+        ///////////////////////////////////////////////////////
+        //// Start Building Tapered Tower Overseer Control ////
+        ///////////////////////////////////////////////////////
+        
+        // Add Scene Controls
         gui = new GUI();
+        
+        // Add Overseer Controls 
+        //   >> Cube Y-Speed Rotations
         control = new Control(0, 0.003, 0.003, 0.002, 0.0016);
         addControl(control);
 
-        // Add framerate stats
+        // Add Frame Rate Stats
         addStatsObject();
-        console.log("Added Stats to scene...");
+        console.log("Added Stats to Scene");
 
         document.body.appendChild(renderer.domElement);
-        gameLoop(); // render the scene	
+        
+        // Render the Scene
+        gameLoop(); 	
 
     }
 
     function addControl(controlObject: Control): void {
-        /* ENTER CODE for the GUI CONTROL HERE */
-        // Cube Rotates
+        // Controls for Cube Y-Rotate Speed
         gui.add(controlObject, 'cube1Speed', -0.1, 0.1);
         gui.add(controlObject, 'cube2Speed', -0.1, 0.1);
         gui.add(controlObject, 'cube3Speed', -0.01, 0.01);
