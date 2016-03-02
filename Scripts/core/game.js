@@ -1,5 +1,17 @@
 /// <reference path="_reference.ts"/>
 // MAIN GAME FILE
+/*
+Author:                Elaine Mae Villarino (villare025)
+Last Modified By:      Elaine Mae Villarino (villare025)
+Last Modified Date:    Wednesday, March 4th, 2016
+Program Description:   With Three.js, JavaScript, and TypeScript, create a web application that displays a 3D Tapered Tower.
+                       The Tapered Tower will be made from Cube Meshes.
+                       GUI Controls should allow the user/overseer to:
+                         >> rotate each of the cubes in y direction with varying speeds
+                         >> Placed 4th in class
+Revision History:      https://github.com/villare025/COMP392-Midterm/commits/master
+Last Modification:     Added Program Header
+*/
 // THREEJS Aliases
 var Scene = THREE.Scene;
 var Renderer = THREE.WebGLRenderer;
