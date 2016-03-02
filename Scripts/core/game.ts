@@ -90,6 +90,8 @@ var game = (() => {
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
         cube1 = new Mesh(cubeGeometry, cubeMaterial);
         cube1.position.setY(0);
+        cube1.castShadow = true;
+        cube1.receiveShadow = true;
         scene.add(cube1);
         console.log("Added Cube 1 to Scene");
         
@@ -98,6 +100,8 @@ var game = (() => {
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
         cube2 = new Mesh(cubeGeometry, cubeMaterial);
         cube2.position.setY(3.5);
+        cube2.castShadow = true;
+        cube2.receiveShadow = true;
         scene.add(cube2);
         console.log("Added Cube 2 to Scene");
         
@@ -106,6 +110,8 @@ var game = (() => {
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
         cube3 = new Mesh(cubeGeometry, cubeMaterial);
         cube3.position.setY(5.5);
+        cube3.castShadow = true;
+        cube3.receiveShadow = true;
         scene.add(cube3);
         console.log("Added Cube 1 to Scene");
         
@@ -114,6 +120,8 @@ var game = (() => {
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
         cube4 = new Mesh(cubeGeometry, cubeMaterial);
         cube4.position.setY(7);
+        cube4.castShadow = true;
+        cube4.receiveShadow = true;
         scene.add(cube4);
         console.log("Added Cube 4 to Scene");
         
@@ -122,6 +130,8 @@ var game = (() => {
         cubeMaterial = new LambertMaterial({ color: Math.random() * 0xc9c9c9 });
         cube5 = new Mesh(cubeGeometry, cubeMaterial);
         cube5.position.setY(7.8);
+        cube5.castShadow = true;
+        cube5.receiveShadow = true;
         scene.add(cube5);
         console.log("Added Cube 5 to Scene");
                
@@ -133,6 +143,7 @@ var game = (() => {
         // Point Light
         pointLight = new PointLight(0xffffff);
         pointLight.position.set(-4, 6, -4);
+        pointLight.castShadow = true;
         scene.add(pointLight);
         console.log("Added pointLight to Scene");
         
@@ -172,7 +183,7 @@ var game = (() => {
         document.body.appendChild(renderer.domElement);
         
         // Render the Scene
-        gameLoop(); 	
+        gameLoop();
 
     }
 
